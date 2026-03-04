@@ -1,6 +1,5 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +8,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
         body {
             font-family: 'Inter', sans-serif;
             /* Gradient background modern */
             background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
         }
-
+        
         /* Menghilangkan panah atas/bawah pada input number */
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
         }
     </style>
 </head>
-
 <body class="min-h-screen flex items-center justify-center p-4">
 
     <!-- Card Container -->
     <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden transition-all">
-
+        
         <!-- Header -->
         <div class="bg-blue-600 p-6 text-white text-center">
             <h1 class="text-2xl font-bold mb-1">Kalkulator DP</h1>
@@ -39,13 +36,12 @@
         <div class="p-6 space-y-6">
             <!-- Input Section -->
             <div>
-                <label for="invoiceInput" class="block text-sm font-medium text-gray-700 mb-2">Total Invoice
-                    (Rp)</label>
+                <label for="invoiceInput" class="block text-sm font-medium text-gray-700 mb-2">Total Invoice (Rp)</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <span class="text-gray-500 font-semibold">Rp</span>
                     </div>
-                    <input type="text" id="invoiceInput"
+                    <input type="text" id="invoiceInput" 
                         class="block w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-lg font-bold text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                         placeholder="0" autocomplete="off">
                 </div>
@@ -56,16 +52,14 @@
 
             <!-- Results Section -->
             <div class="space-y-4">
-
+                
                 <!-- DP Result Box (Highlighted) -->
                 <div class="bg-blue-50 rounded-xl p-4 border border-blue-100 relative group">
                     <p class="text-sm font-medium text-blue-800 mb-1">Minimal DP (60%)</p>
                     <p class="text-3xl font-bold text-blue-600 break-words" id="dpResult">Rp 0</p>
-
+                    
                     <!-- Copy Button -->
-                    <button onclick="copyToClipboard('dpRawValue', 'btnCopyDp')" id="btnCopyDp"
-                        class="absolute top-4 right-4 text-blue-400 hover:text-blue-600 transition-colors tooltip-trigger"
-                        title="Salin Angka">
+                    <button onclick="copyToClipboard('dpRawValue', 'btnCopyDp')" id="btnCopyDp" class="absolute top-4 right-4 text-blue-400 hover:text-blue-600 transition-colors tooltip-trigger" title="Salin Angka">
                         <i class="fas fa-copy text-lg"></i>
                     </button>
                     <!-- Hidden input to store raw value for copying -->
@@ -80,19 +74,17 @@
 
             </div>
         </div>
-
+        
         <!-- Footer / Reset Button -->
         <div class="bg-gray-50 p-4 border-t border-gray-100 text-center">
-            <button id="resetBtn"
-                class="text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors flex items-center justify-center w-full gap-2">
+            <button id="resetBtn" class="text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors flex items-center justify-center w-full gap-2">
                 <i class="fas fa-redo-alt"></i> Reset Hitungan
             </button>
         </div>
     </div>
 
     <!-- Toast Notification (Hidden by default) -->
-    <div id="toast"
-        class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
         <i class="fas fa-check-circle text-green-400"></i>
         <span>Berhasil disalin ke clipboard!</span>
     </div>
@@ -120,10 +112,10 @@
         }
 
         // Event listener saat user mengetik di input field
-        invoiceInput.addEventListener('input', function (e) {
+        invoiceInput.addEventListener('input', function(e) {
             // Hilangkan semua karakter selain angka
             let rawString = this.value.replace(/[^0-9]/g, '');
-
+            
             if (rawString === '') {
                 this.value = '';
                 dpResult.textContent = 'Rp 0';
@@ -150,7 +142,7 @@
             // Tampilkan hasil format rupiah ke layar
             dpResult.textContent = formatRupiah(nilaiDP);
             sisaResult.textContent = formatRupiah(nilaiSisa);
-
+            
             // Simpan nilai asli DP untuk fitur copy
             dpRawValue.value = nilaiDP;
         });
@@ -167,19 +159,19 @@
         // Fitur Copy ke Clipboard (Angka asli tanpa titik/Rp, agar mudah di paste ke m-banking)
         function copyToClipboard(elementId, btnId) {
             const rawValue = document.getElementById(elementId).value;
-
+            
             if (rawValue == 0) return; // Jangan copy kalau masih 0
 
             // Eksekusi copy
             navigator.clipboard.writeText(rawValue).then(() => {
                 showToast();
-
+                
                 // Ubah icon sesaat
                 const btn = document.getElementById(btnId);
                 const icon = btn.querySelector('i');
                 icon.classList.remove('fa-copy');
                 icon.classList.add('fa-check', 'text-green-500');
-
+                
                 setTimeout(() => {
                     icon.classList.remove('fa-check', 'text-green-500');
                     icon.classList.add('fa-copy');
@@ -193,12 +185,11 @@
         function showToast() {
             const toast = document.getElementById('toast');
             toast.classList.remove('translate-y-20', 'opacity-0');
-
+            
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
         }
     </script>
 </body>
-
 </html>
