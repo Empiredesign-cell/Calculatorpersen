@@ -1,5 +1,5 @@
 /* Kalkulin PWA offline shell • Increment APP_VERSION on release */
-const APP_VERSION = 'kalkulin-2.0.0-v1';
+const APP_VERSION = 'kalkulin-2.1.0-v1';
 const SHELL_FILES = [
   './index.html',
   './styles.css',

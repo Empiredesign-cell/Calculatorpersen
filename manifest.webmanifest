@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Kalkulin — Calculator Lengkap",
   "short_name": "Kalkulin",
-  "description": "31 kalkulator dalam satu aplikasi: keuangan, bisnis, konversi, waktu, kesehatan, dan percetakan.",
+  "description": "30 kalkulator dalam satu aplikasi: keuangan, bisnis, konversi, waktu, kesehatan, dan percetakan.",
   "lang": "id",
   "start_url": "./index.html",
   "scope": "./",

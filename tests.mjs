@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { CALCULATORS, CATEGORY_META, computeTool, convertUnit, evaluateExpression } from './calculators.mjs';
 const near = (a,b,eps=1e-6)=> assert.ok(Math.abs(a-b)<=eps,`Expected ${a} ≈ ${b}`);
-assert.equal(CALCULATORS.length,31);
+assert.equal(CALCULATORS.length,30);
 assert.equal(new Set(CALCULATORS.map(t=>t.id)).size,CALCULATORS.length,'Tool IDs must be unique');
+assert.ok(!CALCULATORS.some(tool=>tool.id==='nup'),'N-up layout must be removed');
 for(const tool of CALCULATORS){
   assert.ok(CATEGORY_META[tool.category],`Missing category for ${tool.id}`);
   assert.ok(tool.title && tool.summary && tool.icon,`Missing UI data for ${tool.id}`);
@@ -23,7 +24,6 @@ near(computeTool('bep',{fixed:2000000,price:25000,variable:15000}).value,200);
 near(computeTool('unit',{kind:'Suhu',from:'°C',to:'°F',amount:100}).value,212);
 near(convertUnit('Berat','kg','g',2),2000);
 near(convertUnit('Suhu','°F','°C',32),0);
-near(computeTool('nup',{sheetW:325,sheetH:485,itemW:90,itemH:55,margin:5,gap:3}).value,25);
 near(computeTool('print-area',{width:300,height:100,qty:1,price:25000}).value,75000);
 near(evaluateExpression('2+3*4'),14);
 near(evaluateExpression('(2+3)*4'),20);
@@ -36,4 +36,4 @@ assert.throws(()=>evaluateExpression('1/0'),/nol/);
 assert.throws(()=>evaluateExpression('alert(1)',true));
 assert.throws(()=>computeTool('selling',{cost:100000,method:'margin',percent:100}),/100/);
 assert.throws(()=>convertUnit('Suhu','K','°C',-1),/nol absolut/);
-console.log('Kalkulin: 31 default calculators + numerical and edge-case checks PASSED');
+console.log('Kalkulin: 30 default calculators + numerical and edge-case checks PASSED');

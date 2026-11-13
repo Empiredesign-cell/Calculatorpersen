@@ -1,10 +1,10 @@
-# Kalkulin 2.0 — All-in-one Calculator PWA
+# Kalkulin 2.1 — All-in-one Calculator PWA
 
 Versi upgrade dari kalkulator DP, harga jual, diskon, dan kurs. Paket ini berisi aplikasi statis **tanpa framework, build step, database, atau biaya API wajib**.
 
 ## Fitur
 
-- **31 kalkulator / 7 kategori:** Umum, Keuangan, Bisnis, Konversi, Waktu, Kesehatan, dan Percetakan.
+- **30 kalkulator / 7 kategori:** Umum, Keuangan, Bisnis, Konversi, Waktu, Kesehatan, dan Percetakan.
 - Mobile-first dengan bottom navigation, desktop sidebar, animasi halus, dark mode, pencarian langsung.
 - Favorit, kalkulator terakhir digunakan, dan riwayat perhitungan disimpan di **localStorage perangkat ini**.
 - Hasil dihitung langsung selama input berubah. Tombol salin, bagikan, dan simpan tersedia.
@@ -68,7 +68,7 @@ Jika Node.js tersedia, jalankan:
 node tests.mjs
 ```
 
-Test mencakup seluruh 31 kalkulator, DP, diskon, markup vs margin, PPN simulasi, cicilan, N-up, konversi suhu, kalkulator ilmiah, dan kasus error.
+Test mencakup seluruh 30 kalkulator, DP, diskon, markup vs margin, PPN simulasi, cicilan, konversi suhu, kalkulator ilmiah, dan kasus error.
 
 ## Batasan / catatan keamanan
 
@@ -76,7 +76,6 @@ Test mencakup seluruh 31 kalkulator, DP, diskon, markup vs margin, PPN simulasi,
 - **Riwayat:** tersimpan lokal di browser/perangkat. Data bisa hilang jika cache/data situs dibersihkan. Tidak ada sinkronisasi lintas perangkat.
 - **Pajak:** persentase diisi manual; pajak sebenarnya bergantung pada ketentuan dan jenis transaksi yang berlaku.
 - **Finansial/kesehatan:** rumus adalah simulasi atau estimasi dan bukan pengganti pertimbangan profesional.
-- **Percetakan:** N-up adalah grid matematika, bukan nesting otomatis; belum memasukkan gripper, bleed, cutting mark, dan layout campuran.
 - **Kurs:** endpoint pihak ketiga bisa berubah/kadang tidak tersedia; sistem menampilkan error atau cache berlabel, bukan angka buatan.
 
-© Kalkulin 2.0
+© Kalkulin 2.1
